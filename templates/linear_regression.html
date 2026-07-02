@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <p class="small-title">AI MODEL 1</p>
+        <h1>Linear Regression</h1>
+
+        <p>
+            Линейната регресия предсказва число по формулата:
+            <strong>y = w × x + b</strong>
+        </p>
+
+        <p>
+            Моделът е обучен с данни за формулата:
+            <strong>y = 2x + 1</strong>
+        </p>
+
+        <form method="POST">
+            <label for="x">Въведи x:</label>
+
+            <input
+                type="number"
+                step="any"
+                name="x"
+                id="x"
+                placeholder="Например 5"
+                required
+            >
+
+            <button type="submit">Изчисли</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <p>Въведено x: <strong>{{ entered_x }}</strong></p>
+            <h2>Prediction: {{ result }}</h2>
+        </div>
+        {% endif %}
+
+        <div class="model-info">
+            <p>Weight w: <strong>{{ weight }}</strong></p>
+            <p>Bias b: <strong>{{ bias }}</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

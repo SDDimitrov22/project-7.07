@@ -1,10 +1,73 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
 
-</body>
-</html>
+{% block content %}
+<div class="container">
+    <div class="card">
+        <p class="small-title">AI MODEL 2</p>
+        <h1>Perceptron</h1>
+
+        <p>
+            Персептронът прави бинарна класификация.
+            Той връща само <strong>0</strong> или <strong>1</strong>.
+        </p>
+
+        <p>
+            Този модел е обучен за логическата операция:
+            <strong>AND</strong>.
+        </p>
+
+        <p>
+            При 1 и 1 резултатът е 1. При всички други комбинации е 0.
+        </p>
+
+        <form method="POST">
+            <label for="x1">Първа стойност:</label>
+
+            <input
+                type="number"
+                name="x1"
+                id="x1"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <label for="x2">Втора стойност:</label>
+
+            <input
+                type="number"
+                name="x2"
+                id="x2"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <p>Вход: <strong>{{ x1 }}, {{ x2 }}</strong></p>
+            <h2>Prediction: {{ result }}</h2>
+
+            {% if result == 1 %}
+                <p>Клас: True</p>
+            {% else %}
+                <p>Клас: False</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="model-info">
+            <p>Weight 1: <strong>{{ w1 }}</strong></p>
+            <p>Weight 2: <strong>{{ w2 }}</strong></p>
+            <p>Bias: <strong>{{ bias }}</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
