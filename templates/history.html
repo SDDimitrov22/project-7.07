@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <p class="small-title">PREDICTION HISTORY</p>
+        <h1>История на предсказанията</h1>
+
+        {% if predictions %}
+            <table>
+                <tr>
+                    <th>Модел</th>
+                    <th>Вход</th>
+                    <th>Резултат</th>
+                    <th>Вероятност</th>
+                </tr>
+
+                {% for item in predictions %}
+                <tr>
+                    <td>{{ item["model_name"] }}</td>
+                    <td>{{ item["input_values"] }}</td>
+                    <td>{{ item["prediction"] }}</td>
+                    <td>{{ item["probability"] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>Все още няма направени предсказания.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

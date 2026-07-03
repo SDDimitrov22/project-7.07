@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <p class="small-title">AI MODEL 3</p>
+        <h1>Logistic Regression</h1>
+
+        <p>
+            Logistic Regression прави бинарна класификация.
+            Тя връща клас <strong>0</strong> или <strong>1</strong>,
+            но показва и вероятност.
+        </p>
+
+        <p>
+            Използва sigmoid функция, която връща стойност между
+            <strong>0</strong> и <strong>1</strong>.
+        </p>
+
+        <p>
+            Този модел е обучен за логическата операция:
+            <strong>AND</strong>.
+        </p>
+
+        <form method="POST">
+            <label for="x1">Първа стойност:</label>
+
+            <input
+                type="number"
+                name="x1"
+                id="x1"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <label for="x2">Втора стойност:</label>
+
+            <input
+                type="number"
+                name="x2"
+                id="x2"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <p>Вход: <strong>{{ x1 }}, {{ x2 }}</strong></p>
+            <h2>Prediction: {{ result }}</h2>
+            <p>Probability: <strong>{{ probability }}</strong></p>
+
+            {% if result == 1 %}
+                <p>Клас: True</p>
+            {% else %}
+                <p>Клас: False</p>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        <div class="model-info">
+            <p>Weights: <strong>{{ weights }}</strong></p>
+            <p>Bias: <strong>{{ bias }}</strong></p>
+            <p>Threshold: <strong>0.5</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

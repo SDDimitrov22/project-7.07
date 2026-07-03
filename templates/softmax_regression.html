@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <p class="small-title">AI MODEL 4</p>
+        <h1>Softmax Regression</h1>
+
+        <p>
+            Softmax Regression е модел за класификация с повече от два класа.
+        </p>
+
+        <p>
+            Тук моделът избира между класовете:
+            <strong>I</strong>, <strong>You</strong> и <strong>He</strong>.
+        </p>
+
+        <p>
+            Softmax превръща резултатите във вероятности.
+            Всички вероятности заедно дават 1.
+        </p>
+
+        <form method="POST">
+            <label for="x1">Първа стойност:</label>
+
+            <input
+                type="number"
+                name="x1"
+                id="x1"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <label for="x2">Втора стойност:</label>
+
+            <input
+                type="number"
+                name="x2"
+                id="x2"
+                min="0"
+                max="1"
+                step="1"
+                placeholder="0 или 1"
+                required
+            >
+
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if result is not none %}
+        <div class="result">
+            <p>Вход: <strong>{{ x1 }}, {{ x2 }}</strong></p>
+            <h2>Prediction: {{ result }}</h2>
+
+            <p><strong>Вероятности:</strong></p>
+
+            {% for label, probability in probabilities.items() %}
+                <p>{{ label }}: {{ probability }}</p>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="model-info">
+            <p>Classes: <strong>I, You, He</strong></p>
+            <p>Epochs: <strong>2000</strong></p>
+            <p>Final loss: <strong>{{ loss }}</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
