@@ -1,16 +1,6 @@
-# Данни за Softmax Regression.
-# Имаме 3 класа: I, You, He
-
-TRAINING_DATA_X = [
-    [0, 0],
-    [0, 1],
-    [1, 0],
-    [1, 1]
-]
-
-TRAINING_DATA_Y = [
-    "I",
-    "You",
-    "He",
-    "He"
+TRAINING_DATA = [
+    (0, 0, "I"),
+    (0, 1, "You"),
+    (1, 0, "He"),
+    (1, 1, "He")
 ]
